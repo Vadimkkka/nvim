@@ -15,6 +15,7 @@ require("plugins.autotag")
 require("plugins.autopairs")
 require("plugins.gitsigns")
 require("plugins.comment")
+require("plugins.telescope")
 -- require("plugins.dashboard")
 -- File Explorer
 require("plugins.tree")

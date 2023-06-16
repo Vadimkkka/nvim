@@ -18,15 +18,10 @@ return require('packer').startup(function()
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim'
   }
-  -- use {
-    -- 'glepnir/dashboard-nvim', as = 'dashboard',
-    -- event = 'VimEnter',
-    -- requires = 'nvim-tree/nvim-web-devicons'
-  -- }
-  --[[ use {
-    'nvim-telescope/telescope.nvim',
-    requires = 'nvim-lua/plenary.nvim'
-  } ]]
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.2',
+    requires = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' }
+  }
   --  File Explorer
   use {
     'kyazdani42/nvim-tree.lua',
