@@ -3,6 +3,7 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 -- Git
 vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
+vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
 -- Lsp
 vim.keymap.set('n', '<leader>dr', builtin.lsp_references, {})
 -- Other
