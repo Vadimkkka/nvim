@@ -4,7 +4,7 @@ require('bufferline').setup {
     offsets = {{ filetype = "NvimTree", text = "🎪", text_align = "center"}},
     show_buffer_close_icons = false,
     show_close_icon = false,
-    persist_buffer_sort = false, 
+    persist_buffer_sort = false,
     separator_style = { '', '' },
     always_show_bufferline = false,
   },
