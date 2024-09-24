@@ -1,17 +1,18 @@
-require('nvim-tree').setup {
+local default = require "nvchad.configs.nvimtree"
+
+local options = {
   hijack_cursor = true,
   view = {
     cursorline = false,
-    width = {}
   },
   renderer = {
     group_empty = true,
     highlight_git = true,
-    root_folder_label = false,
-    highlight_opened_files = "icon",
+    -- highlight_opened_files = "icon",
+    indent_markers = { enable = false },
     icons = {
       show = {
-        folder_arrow = false
+        folder_arrow = false,
       },
       git_placement = "signcolumn",
       glyphs = {
@@ -26,15 +27,18 @@ require('nvim-tree').setup {
           staged = "",
           untracked = "󰡫",
           deleted = "󰩹",
-        }
+          unmerged = "",
+        },
       },
     },
-    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "package.json" },
+    -- special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "package.json" },
   },
-  update_focused_file = {
-    enable = true,
-  },
-  trash = {
-    cmd = "trash",
-  },
+  -- update_focused_file = {
+  --   enable = true,
+  -- },
+  -- trash = {
+  --   cmd = "trash",
+  -- },
 }
+
+return vim.tbl_deep_extend("force", default, options)

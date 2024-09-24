@@ -1,31 +1,37 @@
--- Basic config
-require("core.configs")
-require("core.plugins")
-require("core.mappings")
--- Plugins config
--- Themes
-require('plugins.onedark')
-require("plugins.catppuccin")
--- Syntax Highlightin
-require("plugins.treesitter")
-require("plugins.colorizer")
-require("plugins.todo-comments")
--- Usability
-require("plugins.autotag")
-require("plugins.autopairs")
-require("plugins.gitsigns")
-require("plugins.comment")
-require("plugins.telescope")
--- require("plugins.dashboard")
--- File Explorer
-require("plugins.tree")
--- Header
-require("plugins.bufferline")
--- Footer
-require("plugins.lualine")
--- LSP
-require("plugins.lsp-installer")
-require("plugins.cmp")
-require("plugins.lsp_signature")
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
+vim.g.mapleader = " "
 
-vim.cmd.colorscheme "catppuccin"
+-- bootstrap lazy and all plugins
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
+if not vim.uv.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+local lazy_config = require "configs.lazy"
+
+-- load plugins
+require("lazy").setup({
+  {
+    "NvChad/NvChad",
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+  },
+
+  { import = "plugins" },
+}, lazy_config)
+
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+
+require "options"
+require "nvchad.autocmds"
+
+vim.schedule(function()
+  require "mappings"
+end)
