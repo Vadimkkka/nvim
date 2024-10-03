@@ -24,8 +24,8 @@ local options = {
       vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
     end
     -- Navigation
-    map('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {desc = "Git Jump to next hunk", expr = true})
-    map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {desc = "Git Jump to previous hunk", expr = true})
+    map('n', '<C-c>', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {desc = "Git Jump to next hunk", expr = true})
+    map('n', '<C-S-c>', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {desc = "Git Jump to previous hunk", expr = true})
     -- Actions
     map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>', { desc = "Git Preview hunk" })
     map('n', '<leader>hs', ':Gitsigns stage_hunk<CR>', { desc = "Git Stage hunk" })
