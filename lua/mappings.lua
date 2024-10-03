@@ -35,8 +35,8 @@ map("n", "<leader>x", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffers close" })
 -- NOTE comment
-map("n", "<leader>/", "gcc", { desc = "Toggle Comment", remap = true })
-map("v", "<leader>/", "gc", { desc = "Toggle Comment", remap = true })
+map("n", "<C-/>", "gcc", { desc = "Toggle Comment", remap = true })
+map("v", "<C-/>", "gc", { desc = "Toggle Comment", remap = true })
 -- NOTE nvimtree
 map("n", "<C-n>", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
@@ -86,13 +86,13 @@ map("n", "<leader>gf", "<cmd>Telescope git_files<CR>", { desc = "Telescope git f
 map("n", "<leader>dr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope Lsp references" })
 map("n", "<leader>tt", "<cmd>TodoTelescope<CR>", { desc = "Telescope TodoComments" })
 -- NOTE TodoComments
-map("n", "]t", function()
+map("n", "<C-t>", function()
   require("todo-comments").jump_next()
 end, { desc = "TodoComments Jump to next" })
-map("n", "[t", function()
+map("n", "<C-S-t>", function()
   require("todo-comments").jump_prev()
 end, { desc = "TodoComments Jump to previous" })
 -- NOTE Diagnostic window
-map("n", "g?", function()
+map("n", "ga", function()
   vim.diagnostic.open_float()
 end, { desc = "Show Diagnostics under the cursor" })
