@@ -10,6 +10,7 @@ local options = {
 
     "html",
     "css",
+    "scss",
     "javascript",
     "typescript",
     "vue",
@@ -17,6 +18,7 @@ local options = {
     -- "comment",
     "rust",
     "make",
+    "bash",
     -- "c",
     -- "cpp",
   },
