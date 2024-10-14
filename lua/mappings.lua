@@ -38,7 +38,7 @@ end, { desc = "Buffers close" })
 map("n", "<leader>/", "gcc", { desc = "Toggle Comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "Toggle Comment", remap = true })
 -- NOTE nvimtree
-map("n", "<leader>n", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle window" })
+map("n", "<C-n>", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
