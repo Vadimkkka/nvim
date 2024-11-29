@@ -14,6 +14,7 @@ local options = {
     "javascript",
     "typescript",
     "vue",
+    "tsx",
     -- "scss",
     -- "comment",
     "rust",
