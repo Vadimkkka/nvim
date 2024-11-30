@@ -56,6 +56,10 @@ return {
       require("nvim-ts-autotag").setup()
     end,
   },
+  -- flash.nvim/hop.nvim
+  -- crates.nvim
+  -- package-info.nvim
+  -- modicator.nvim
   -- {
   --   'akinsho/bufferline.nvim',
   --   lazy = false,

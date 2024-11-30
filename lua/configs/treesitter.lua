@@ -25,6 +25,7 @@ local options = {
     "regex",
     -- "c",
     -- "cpp",
+    "sql",
   },
 }
 
