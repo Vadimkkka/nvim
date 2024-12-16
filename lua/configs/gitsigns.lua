@@ -2,13 +2,14 @@ local default = require "nvchad.configs.gitsigns"
 
 local options = {
   signs = {
-    -- red    
-    -- green   
-    -- blue  
-    add = { text = "" },
-    change = { text = "" },
-    delete = { text = "" },
-    topdelete = { text = "" },
+    -- red     󰄊      󰩹
+    -- green 󰐅    󰞦
+    -- yellow     󰫢      󱁆
+    -- blue      󰣙    󰡫 
+    add = { text = "󰐅" },
+    change = { text = "" },
+    delete = { text = "󰄊" },
+    topdelete = { text = "󰄊" },
     changedelete = { text = "" },
     untracked = { text = "┆" },
   },

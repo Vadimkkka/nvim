@@ -1,6 +1,7 @@
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
 -- require "nvchad.mappings"
 local map = vim.keymap.set
+map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle nvcheatsheet" })
 -- NOTE DEFAULT
 map("i", "<C-b>", "<ESC>^i", { desc = "Move Beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "Move End of line" })
@@ -18,8 +19,6 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General Clear highlights" })
 
 map("n", "<C-w>", "<cmd>w<CR>", { desc = "General Save file" })
 map("n", "<C-y>", "<cmd>%y+<CR>", { desc = "General Copy whole file" })
-
-map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle nvcheatsheet" })
 -- NOTE format
 map("n", "<leader>fm", function()
   require("conform").format()
@@ -41,6 +40,7 @@ map("v", "<leader>/", "gc", { desc = "Toggle Comment", remap = true })
 map("n", "<C-n>", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
 -- NOTE telescope
+-- default <ctr-d> and <ctrl-u> scroll by half a page
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
@@ -78,13 +78,16 @@ end, { desc = "Jump To current context" })
 -- NOTE CUSTOM
 map("n", ";", ":", { desc = "General Enter command mode" })
 -- map("n", "ж", ":", { desc = "General Enter command mode [ru]" })
+map("n", "<leader>re", function()
+  require("nvchad.lsp.renamer")()
+end, { desc = "rename variable under cursor" })
 
 map("n", "<leader>cx", function()
   require("nvchad.tabufline").closeAllBufs()
 end, { desc = "Buffers Close all" })
 -- NOTE Git
 map("n", "<leader>gf", "<cmd>Telescope git_files<CR>", { desc = "Telescope git files" })
-map("n", "<leader>dr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope Lsp references" })
+map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope Lsp references" })
 map("n", "<leader>tt", "<cmd>TodoTelescope<CR>", { desc = "Telescope TodoComments" })
 -- NOTE TodoComments
 map("n", "]t", function()

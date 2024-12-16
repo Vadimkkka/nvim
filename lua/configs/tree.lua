@@ -4,6 +4,8 @@ local options = {
   hijack_cursor = true,
   view = {
     cursorline = false,
+    width = { min = 30 },
+    -- centralize_selection = true,
   },
   renderer = {
     group_empty = true,
@@ -23,15 +25,16 @@ local options = {
           empty_open = "",
         },
         git = {
-          unstaged = "",
-          staged = "",
-          untracked = "󰡫",
-          deleted = "󰩹",
+          unstaged = "",
+          -- staged = "",
+          -- untracked = "󰡫",
+          untracked = "󰐅",
+          deleted = "󰄊",
           unmerged = "",
         },
       },
     },
-    -- special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "package.json" },
+    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "package.json" },
   },
   -- update_focused_file = {
   --   enable = true,

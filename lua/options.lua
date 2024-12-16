@@ -1,13 +1,18 @@
 require "nvchad.options"
 
-vim.opt.whichwrap = ""
+vim.g.netrw_banner = 0
 
 local o = vim.o
+o.whichwrap = ""
+
 o.termguicolors = true
 o.mouse = ""
 o.showmode = false
 
+o.backup = false
+o.swapfile = false
 o.undofile = false
+-- o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 o.updatetime = 4000
 o.timeoutlen = 1000
 
@@ -15,6 +20,11 @@ o.wrap = false
 o.ignorecase = true
 -- учитывать регистр если есть заглавные
 o.smartcase = true
+
+-- o.spell = true
+-- en_us
+-- o.spelllang = 'ru'
+-- o.scrolloff = 8
 
 -- Line Numbers
 o.number = true

@@ -4,6 +4,8 @@
 
 ### Required
 
+Font: `FiraCode Nerd Font`
+
 Libs:
 
 - ripgrep

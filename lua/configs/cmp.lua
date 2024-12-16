@@ -5,6 +5,7 @@ local options = {
   mapping = {
     ["<Up>"] = cmp.mapping.select_prev_item(),
     ["<Down>"] = cmp.mapping.select_next_item(),
+    ["<C-c>"] = cmp.mapping.complete(),
     ["<Tab>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,

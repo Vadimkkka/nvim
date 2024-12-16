@@ -10,6 +10,7 @@ M.base46 = {
   theme = "catppuccin",
   transparency = true,
   integrations = { "rainbowdelimiters", "todo" },
+  ---@diagnostic disable-next-line 
   hl_override = {
     TbBufOnClose = { fg = "statusline_bg" },
     TbBufOffClose = { fg = "statusline_bg" },
@@ -24,6 +25,10 @@ M.base46 = {
     -- FIX aloe
     -- WARN aloe
     -- TEST aloe
+    NvimTreeGitNew = { fg = "green" },
+    NvimTreeGitDirty = { fg = "yellow" },
+    NvimTreeGitDeleted = { fg = "red" },
+    NvimTreeSpecialFile = { fg = "purple" },
     St_InsertMode = { bg = "sun" },
     St_InsertModeSep = { fg = "sun" },
     St_pos_sep = { bg = "NONE", fg = "lightbg" },
@@ -39,6 +44,9 @@ M.ui = {
   },
   tabufline = {
     order = { "treeOffset", "buffers", "tabs" },
+  },
+  cmp = {
+    style = "atom_colored"
   },
   statusline = {
     separator_style = "arrow",
