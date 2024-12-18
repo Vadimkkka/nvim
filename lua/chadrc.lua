@@ -10,7 +10,7 @@ M.base46 = {
   theme = "catppuccin",
   transparency = true,
   integrations = { "rainbowdelimiters", "todo" },
-  ---@diagnostic disable-next-line 
+  ---@diagnostic disable-next-line: missing-fields
   hl_override = {
     TbBufOnClose = { fg = "statusline_bg" },
     TbBufOffClose = { fg = "statusline_bg" },
@@ -68,6 +68,7 @@ M.ui = {
       end,
       cwd = function()
         local name = vim.loop.cwd()
+        ---@diagnostic disable-next-line: need-check-nil
         name = "%#St_cwd_text# " .. (name:match "([^/\\]+)[/\\]*$" or name) .. " /"
         return (vim.o.columns > 85 and name) or ""
       end,
@@ -95,9 +96,13 @@ M.ui = {
         local hints = #vim.diagnostic.get(utils.stbufnr(), { severity = vim.diagnostic.severity.HINT })
         local info = #vim.diagnostic.get(utils.stbufnr(), { severity = vim.diagnostic.severity.INFO })
         -- TODO icons
+        ---@diagnostic disable-next-line: cast-local-type
         err = (err and err > 0) and ("%#St_lspError#" .. " " .. err .. " ") or ""
+        ---@diagnostic disable-next-line: cast-local-type
         warn = (warn and warn > 0) and ("%#St_lspWarning#" .. " " .. warn .. " ") or ""
+        ---@diagnostic disable-next-line: cast-local-type
         hints = (hints and hints > 0) and ("%#St_lspHints#" .. " " .. hints .. " ") or ""
+        ---@diagnostic disable-next-line: cast-local-type
         info = (info and info > 0) and ("%#St_lspInfo#" .. " " .. info .. " ") or ""
 
         return " " .. err .. warn .. hints .. info

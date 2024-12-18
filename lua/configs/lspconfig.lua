@@ -1,3 +1,4 @@
+-- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/configs/lspconfig.lua
 require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"

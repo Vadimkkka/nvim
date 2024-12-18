@@ -76,11 +76,13 @@ map("n", "<leader>cc", function()
 end, { desc = "Jump To current context" })
 
 -- NOTE CUSTOM
+-- =, ==
 map("n", ";", ":", { desc = "General Enter command mode" })
 -- map("n", "ж", ":", { desc = "General Enter command mode [ru]" })
-map("n", "<leader>re", function()
-  require("nvchad.lsp.renamer")()
-end, { desc = "rename variable under cursor" })
+-- NOTE ra
+-- map("n", "<leader>re", function()
+--   require "nvchad.lsp.renamer"()
+-- end, { desc = "rename variable under cursor" })
 
 map("n", "<leader>cx", function()
   require("nvchad.tabufline").closeAllBufs()

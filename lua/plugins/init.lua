@@ -56,6 +56,10 @@ return {
       require("nvim-ts-autotag").setup()
     end,
   },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    opts = require "configs.commentstring",
+  }
   -- flash.nvim/hop.nvim
   -- crates.nvim
   -- package-info.nvim
