@@ -26,3 +26,9 @@ Formatter:
 - prettier
 - rustfmt
 - stylua
+
+### Commands
+
+Plugins: `Lazy`
+
+Lsp: `Mason`

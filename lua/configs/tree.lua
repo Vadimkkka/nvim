@@ -28,7 +28,7 @@ local options = {
           unstaged = "",
           -- staged = "",
           -- untracked = "󰡫",
-          untracked = "󰐅",
+          untracked = "󰞦",
           deleted = "󰄊",
           unmerged = "",
         },
