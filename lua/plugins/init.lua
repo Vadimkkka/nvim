@@ -17,7 +17,7 @@ return {
     -- event = "BufWritePre",
     opts = require "configs.conform",
   },
-  { "lewis6991/gitsigns.nvim", opts = require "configs.gitsigns" },
+  { "lewis6991/gitsigns.nvim", lazy = false, opts = require "configs.gitsigns" },
   {
     "neovim/nvim-lspconfig",
     config = function()

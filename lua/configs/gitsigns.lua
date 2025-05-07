@@ -6,7 +6,7 @@ local options = {
     -- green 󰐅    󰞦
     -- yellow     󰫢      󱁆
     -- blue      󰣙    󰡫 
-    add = { text = "󰐅" },
+    add = { text = "󰞦" },
     change = { text = "" },
     delete = { text = "󰄊" },
     topdelete = { text = "󰄊" },

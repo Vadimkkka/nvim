@@ -26,6 +26,8 @@ local options = {
     -- "c",
     -- "cpp",
     "sql",
+    "yaml",
+    "toml"
   },
 }
 
