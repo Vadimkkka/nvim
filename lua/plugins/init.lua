@@ -11,7 +11,7 @@ return {
     end,
   },
   { "nvim-tree/nvim-tree.lua", opts = require "configs.tree" },
-  { "folke/which-key.nvim", enabled = false },
+  { "folke/which-key.nvim", enabled = true },
   {
     "stevearc/conform.nvim",
     -- event = "BufWritePre",

@@ -10,6 +10,11 @@ map("i", "<C-l>", "<Right>", { desc = "Move Right" })
 map("i", "<C-j>", "<Down>", { desc = "Move Down" })
 map("i", "<C-k>", "<Up>", { desc = "Move Up" })
 
+if vim.fn.has "win64" then
+  map("i", "<C-v>", "<C-r>+", { desc = "Paste" })
+  map("c", "<C-v>", "<C-r>+", { desc = "Paste" })
+end
+
 map("n", "<C-h>", "<C-w>h", { desc = "Switch(window) Left" })
 map("n", "<C-l>", "<C-w>l", { desc = "Switch(window) Right" })
 map("n", "<C-j>", "<C-w>j", { desc = "Switch(window) Down" })
@@ -50,15 +55,39 @@ map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find o
 -- map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
 map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
 map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
--- map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
+map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
 -- map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "telescope nvchad themes" })
--- map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
 -- map(
 --   "n",
 --   "<leader>fa",
 --   "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
 --   { desc = "telescope find all files" }
 -- )
+-- NOTE terminal
+map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+
+-- NOTE new terminals
+-- map("n", "<leader>h", function()
+--   require("nvchad.term").new { pos = "sp" }
+-- end, { desc = "terminal new horizontal term" })
+--
+-- map("n", "<leader>v", function()
+--   require("nvchad.term").new { pos = "vsp" }
+-- end, { desc = "terminal new vertical term" })
+
+-- NOTE toggleable terminal
+map({ "n", "t" }, "<A-v>", function()
+  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
+end, { desc = "terminal toggleable vertical term" })
+
+map({ "n", "t" }, "<A-h>", function()
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end, { desc = "terminal toggleable horizontal term" })
+
+map({ "n", "t" }, "<A-t>", function()
+  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+end, { desc = "terminal toggle floating term" })
 -- NOTE blankline
 map("n", "<leader>cc", function()
   local config = { scope = {} }
@@ -102,3 +131,5 @@ end, { desc = "TodoComments Jump to previous" })
 map("n", "g?", function()
   vim.diagnostic.open_float()
 end, { desc = "Show Diagnostics under the cursor" })
+-- n shift+k doc
+-- i ctrl+s signature
