@@ -11,6 +11,7 @@ local nvlsp = require "nvchad.configs.lspconfig"
 local severity = vim.diagnostic.severity
 vim.diagnostic.config {
   virtual_text = { prefix = "" },
+  -- virtual_lines = { current_line = true },
   signs = {
     text = {
       [severity.ERROR] = "",

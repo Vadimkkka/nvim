@@ -27,6 +27,14 @@ return {
   { "hrsh7th/nvim-cmp", opts = require "configs.cmp" },
   { "NvChad/nvim-colorizer.lua", opts = { user_default_options = { css_fn = true } } },
   { "nvim-treesitter/nvim-treesitter", opts = require "configs.treesitter" },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    cmd = "Telescope",
+    opts = function()
+      return require "configs.telescope"
+    end,
+  },
   -- NOTE Custom
   { "hiphish/rainbow-delimiters.nvim", event = "User FilePost" },
   -- { "romainl/vim-cool", lazy = false },
@@ -59,7 +67,7 @@ return {
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     opts = require "configs.commentstring",
-  }
+  },
   -- flash.nvim/hop.nvim
   -- crates.nvim
   -- package-info.nvim
