@@ -3,7 +3,7 @@ local options = {
     lua = { "stylua" },
     ["*"] = { "prettier" },
     -- markdown = { "markdown" },
-    -- rust = { "rustfmt" },
+    rust = { "rustfmt" },
   },
 
   format_on_save = {
