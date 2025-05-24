@@ -53,6 +53,9 @@ M.base46 = {
     St_pos_sep = { bg = "NONE", fg = "lightbg" },
     St_pos_icon = { bg = "lightbg", fg = "lavender" },
     St_pos_text = { bg = "lightbg", fg = "lavender" },
+    St_cwd_sep = { bg = "lightbg", fg = "grey" },
+    St_cwd_icon = { bg = "grey", fg = "red" },
+    St_cwd_text = { bg = "grey" },
     Comment = { italic = true },
     FloatBorder = { fg = "grey_fg" },
     LspSignatureActiveParameter = { fg = "NONE", bg = "grey" },
@@ -68,8 +71,9 @@ M.ui = {
   },
   statusline = {
     separator_style = "arrow",
-    order = { "mode", "cwd", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor" },
+    order = { "mode", "cwd", "fileWithPath", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor" },
     -- https://github.com/NvChad/ui/blob/v2.5/lua/nvchad/stl/default.lua
+    -- arrow = { left = "", right = "" },
     modules = {
       mode = function()
         if not utils.is_activewin() then
@@ -80,15 +84,30 @@ M.ui = {
 
         local m = vim.api.nvim_get_mode().mode
 
-        local current_mode = "%#St_" .. modes[m][2] .. "Mode# 󱁆 " .. modes[m][1]
+        local current_mode = "%#St_" .. modes[m][2] .. "Mode# 󱁆 " .. modes[m][1] .. " "
         local mode_sep1 = "%#St_" .. modes[m][2] .. "ModeSep#"
-        return current_mode .. mode_sep1 .. "%#ST_EmptySpace#"
+        -- "%#ST_EmptySpace#"
+        return current_mode .. mode_sep1
       end,
       cwd = function()
-        local name = vim.loop.cwd()
+        local name = vim.uv.cwd()
         ---@diagnostic disable-next-line: need-check-nil
-        name = "%#St_cwd_text# " .. (name:match "([^/\\]+)[/\\]*$" or name) .. " /"
-        return (vim.o.columns > 85 and name) or ""
+        name = "%#St_cwd_text#" .. (name:match "([^/\\]+)[/\\]*$" or name) .. " "
+        return (vim.o.columns > 85 and ("%#St_cwd_icon# 󰉋 " .. name .. "%#St_cwd_sep#")) or ""
+      end,
+      -- relativePath = function()
+      --   local path = vim.api.nvim_buf_get_name(utils.stbufnr())
+      --   if path == "" then
+      --     return ""
+      --   end
+      --
+      --   return "%#St_cwd_text# " .. vim.fn.expand("%:.:h"):gsub("\\", "/") .. "/"
+      -- end,
+      fileWithPath = function()
+        local path = vim.fn.expand("%:.:h"):gsub("\\", "/") .. "/"
+
+        local x = utils.file()
+        return "%#St_file# " .. x[1] .. " " .. path .. x[2] .. " %#St_file_sep#"
       end,
       git = function()
         if not vim.b[utils.stbufnr()].gitsigns_head or vim.b[utils.stbufnr()].gitsigns_git_status then
