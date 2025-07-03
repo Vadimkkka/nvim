@@ -1,4 +1,15 @@
 return {
+  {
+    "stevearc/conform.nvim",
+    event = "BufWritePre", -- uncomment for format on save
+    opts = require "configs.conform",
+  },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require "configs.lspconfig"
+    end,
+  },
   -- NOTE Default
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -12,28 +23,27 @@ return {
   },
   { "nvim-tree/nvim-tree.lua", opts = require "configs.tree" },
   { "folke/which-key.nvim", enabled = true },
-  {
-    "stevearc/conform.nvim",
-    -- event = "BufWritePre",
-    opts = require "configs.conform",
-  },
-  { "lewis6991/gitsigns.nvim", lazy = false, opts = require "configs.gitsigns" },
+  { "lewis6991/gitsigns.nvim", event = "User FilePost", opts = require "configs.gitsigns" },
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
     end,
   },
-  { "hrsh7th/nvim-cmp", opts = require "configs.cmp" },
+  -- test new blink
+  { import = "nvchad.blink.lazyspec" },
+  {
+    "Saghen/blink.cmp",
+    opts = require "configs.blink",
+  },
+  -- { "hrsh7th/nvim-cmp", opts = require "configs.cmp" },
   { "NvChad/nvim-colorizer.lua", opts = { user_default_options = { css_fn = true } } },
   { "nvim-treesitter/nvim-treesitter", opts = require "configs.treesitter" },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "Telescope",
-    opts = function()
-      return require "configs.telescope"
-    end,
+    opts = require "configs.telescope",
   },
   -- NOTE Custom
   { "hiphish/rainbow-delimiters.nvim", event = "User FilePost" },
@@ -66,19 +76,22 @@ return {
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
+    event = "User FilePost",
     opts = require "configs.commentstring",
   },
-  -- flash.nvim/hop.nvim
-  -- crates.nvim
+  {
+    "mawkler/modicator.nvim",
+    event = "User FilePost",
+    opts = {
+      highlights = {
+        defaults = { bold = true },
+      },
+    },
+  },
+  -- flash.nvim
+  --
+  -- git-conflict.nvim
+  --
   -- package-info.nvim
-  -- modicator.nvim
-  -- {
-  --   'akinsho/bufferline.nvim',
-  --   lazy = false,
-  --   version = "*",
-  --   dependencies = 'nvim-tree/nvim-web-devicons',
-  --   config = function ()
-  --     require "configs.bufferline"
-  --   end
-  -- }
+  -- crates.nvim
 }

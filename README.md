@@ -6,6 +6,10 @@
 
 Font: `FiraCode Nerd Font`
 
+```bash
+:MasonInstall vue-language-server
+```
+
 Libs:
 
 - ripgrep

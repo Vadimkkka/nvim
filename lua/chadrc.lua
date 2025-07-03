@@ -1,5 +1,4 @@
 -- https://github.com/NvChad/NvChad
--- https://github.com/NvChad/ui/tree/v3.0/lua/nvchad
 -- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
 local utils = require "nvchad.stl.utils"
 
@@ -22,15 +21,26 @@ M.nvdash = {
   load_on_startup = true,
 }
 
-M.lsp = { signature = true }
--- https://github.com/NvChad/base46/blob/v3.0/lua/base46/integrations/defaults.lua
--- https://github.com/NvChad/base46/blob/v3.0/lua/base46/integrations/cmp.lua
 M.base46 = {
+  -- jabuti, kanagawa, onedark, palenight
   theme = "catppuccin",
   transparency = true,
   integrations = { "rainbowdelimiters", "todo" },
-  ---@diagnostic disable-next-line: missing-fields
+  hl_add = {
+    -- Modicator.nvim
+    NormalMode = { fg = "blue" },
+    InsertMode = { fg = "green" },
+    VisualMode = { fg = "purple" },
+    CommandMode = { fg = "orange" },
+    -- ReplaceMode
+    -- SelectMode
+    -- TerminalMode
+    -- TerminalNormalMode
+  },
   hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+
     TbBufOnClose = { fg = "statusline_bg" },
     TbBufOffClose = { fg = "statusline_bg" },
     -- PERF aloe
@@ -48,18 +58,29 @@ M.base46 = {
     NvimTreeGitDirty = { fg = "yellow" },
     NvimTreeGitDeleted = { fg = "red" },
     NvimTreeSpecialFile = { fg = "purple" },
-    St_InsertMode = { bg = "sun" },
-    St_InsertModeSep = { fg = "sun" },
+
+    St_NormalMode = { bg = "blue" },
+    St_NormalModeSep = { fg = "blue" },
+    St_InsertMode = { bg = "green" },
+    St_InsertModeSep = { fg = "green" },
+    St_VisualMode = { bg = "purple" },
+    St_VisualModeSep = { fg = "purple" },
+    St_CommandMode = { bg = "orange" },
+    St_CommandModeSep = { fg = "orange" },
+
     St_pos_sep = { bg = "NONE", fg = "lightbg" },
     St_pos_icon = { bg = "lightbg", fg = "lavender" },
     St_pos_text = { bg = "lightbg", fg = "lavender" },
     St_cwd_sep = { bg = "lightbg", fg = "grey" },
-    St_cwd_icon = { bg = "grey", fg = "red" },
+    St_cwd_icon = { bg = "grey", fg = "blue" },
     St_cwd_text = { bg = "grey" },
-    Comment = { italic = true },
-    FloatBorder = { fg = "grey_fg" },
-    LspSignatureActiveParameter = { fg = "NONE", bg = "grey" },
-    ["@comment"] = { italic = true },
+    St_gitIcons = { fg = "purple", bold = false },
+    -- FloatBorder = { fg = "blue" },
+    -- BlinkCmpMenuBorder = { fg = "blue" },
+    BlinkCmpDocBorder = { fg = "blue" },
+    BlinkCmpSignatureHelpBorder = { fg = "blue" },
+    -- BlinkCmpMenuBorder = { fg = "blue" },
+    -- LspSignatureActiveParameter = { fg = "NONE", bg = "grey" },
   },
 }
 M.ui = {
@@ -68,11 +89,16 @@ M.ui = {
   },
   cmp = {
     style = "atom_colored",
+    -- format_colors = {
+    --   tailwind = true,
+    -- },
+  },
+  cheatsheet = {
+    theme = "simple",
   },
   statusline = {
-    separator_style = "arrow",
     order = { "mode", "cwd", "fileWithPath", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor" },
-    -- https://github.com/NvChad/ui/blob/v2.5/lua/nvchad/stl/default.lua
+    -- https://github.com/NvChad/ui/blob/v3.0/lua/nvchad/stl/default.lua
     -- arrow = { left = "", right = "" },
     modules = {
       mode = function()
@@ -84,7 +110,8 @@ M.ui = {
 
         local m = vim.api.nvim_get_mode().mode
 
-        local current_mode = "%#St_" .. modes[m][2] .. "Mode# 󱁆 " .. modes[m][1] .. " "
+        --    
+        local current_mode = "%#St_" .. modes[m][2] .. "Mode#  " .. modes[m][1] .. " "
         local mode_sep1 = "%#St_" .. modes[m][2] .. "ModeSep#"
         -- "%#ST_EmptySpace#"
         return current_mode .. mode_sep1
@@ -116,10 +143,13 @@ M.ui = {
 
         local git_status = vim.b[utils.stbufnr()].gitsigns_status_dict
         -- TODO icons, colors
-        local added = (git_status.added and git_status.added ~= 0) and ("  " .. git_status.added) or ""
-        local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
-        local removed = (git_status.removed and git_status.removed ~= 0) and ("  " .. git_status.removed) or ""
-        local branch_name = " " .. git_status.head
+        local added = (git_status.added and git_status.added ~= 0) and ("%#Added#  " .. git_status.added) or ""
+        local changed = (git_status.changed and git_status.changed ~= 0) and ("%#Changed#  " .. git_status.changed)
+          or ""
+        local removed = (git_status.removed and git_status.removed ~= 0) and ("%#Removed#  " .. git_status.removed)
+          or ""
+        -- 
+        local branch_name = " " .. git_status.head
 
         return "%#St_gitIcons# " .. branch_name .. added .. changed .. removed
       end,
@@ -145,8 +175,7 @@ M.ui = {
         return " " .. err .. warn .. hints .. info
       end,
       lsp = function()
-        local version = vim.version().minor
-        if rawget(vim, "lsp") and version >= 10 then
+        if rawget(vim, "lsp") then
           for _, client in ipairs(vim.lsp.get_clients()) do
             if client.attached_buffers[utils.stbufnr()] then
               return (vim.o.columns > 100 and "%#St_Lsp# 󰁨  " .. client.name .. " ") or "%#St_Lsp# 󰁨  "
@@ -156,10 +185,7 @@ M.ui = {
 
         return ""
       end,
-      cursor = function()
-        local pos = vim.fn.getcurpos()
-        return "%#St_pos_sep#%#St_pos_icon#  %#St_pos_text#" .. pos[2] .. ":" .. pos[3] .. " "
-      end,
+      cursor = "%#St_pos_sep#%#St_pos_icon#  %#St_pos_text#%l:%v ",
     },
   },
 }

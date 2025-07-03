@@ -1,10 +1,8 @@
--- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/configs/lspconfig.lua
 require("nvchad.configs.lspconfig").defaults()
-
-local lspconfig = require "lspconfig"
--- "ts_ls"
-local servers = { "html", "cssls", "css_variables", "rust_analyzer" }
-local nvlsp = require "nvchad.configs.lspconfig"
+-- MasonInstallAll
+-- ts_ls, eslint
+local servers = { "lua_ls", "html", "cssls", "css_variables", "rust_analyzer", "tailwindcss" }
+vim.lsp.enable(servers)
 
 -- HACK override icons
 -- https://github.com/NvChad/ui/blob/v2.5/lua/nvchad/lsp/init.lua
@@ -24,26 +22,59 @@ vim.diagnostic.config {
   float = { border = "single" },
 }
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_init = nvlsp.on_init,
-    on_attach = nvlsp.on_attach,
-    capabilities = nvlsp.capabilities,
-  }
-end
+-- read :h vim.lsp.config for changing options of lsp servers
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-lspconfig.volar.setup {
-  on_init = nvlsp.on_init,
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  filetypes = { "typescript", "javascript", "vue" },
-  init_options = {
-    vue = {
-      hybridMode = false,
+-- https://github.com/vuejs/language-tools/wiki/Neovim
+local vue_language_server_path = vim.fn.stdpath "data"
+  .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+local vue_plugin = {
+  name = "@vue/typescript-plugin",
+  location = vue_language_server_path,
+  languages = { "vue" },
+  configNamespace = "typescript",
+}
+local vtsls_config = {
+  settings = {
+    vtsls = {
+      tsserver = {
+        globalPlugins = {
+          vue_plugin,
+        },
+      },
     },
   },
-  -- NOTE for monorepo
-  -- init_options = { typescript = { tsdk = "C:/Users/Vadim/AppData/Local/nvs/default/node_modules/typescript/lib" } },
+  filetypes = { "typescript", "javascript", "vue" },
 }
+
+local vue_ls_config = {
+  on_init = function(client)
+    client.handlers["tsserver/request"] = function(_, result, context)
+      local clients = vim.lsp.get_clients { bufnr = context.bufnr, name = "vtsls" }
+      if #clients == 0 then
+        vim.notify("Could not found `vtsls` lsp client, vue_lsp would not work without it.", vim.log.levels.ERROR)
+        return
+      end
+      local ts_client = clients[1]
+      ---@diagnostic disable-next-line: deprecated
+      local param = unpack(result)
+      ---@diagnostic disable-next-line: deprecated
+      local id, command, payload = unpack(param)
+      ts_client:exec_cmd({
+        title = "vue_request_forward", -- You can give title anything as it's used to represent a command in the UI, `:h Client:exec_cmd`
+        command = "typescript.tsserverRequest",
+        arguments = {
+          command,
+          payload,
+        },
+      }, { bufnr = context.bufnr }, function(_, r)
+        local response_data = { { id, r.body } }
+        ---@diagnostic disable-next-line: param-type-mismatch
+        client:notify("tsserver/response", response_data)
+      end)
+    end
+  end,
+}
+-- nvim 0.11 or above
+vim.lsp.config("vtsls", vtsls_config)
+vim.lsp.config("vue_ls", vue_ls_config)
+vim.lsp.enable { "vtsls", "vue_ls" }
