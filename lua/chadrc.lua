@@ -36,6 +36,10 @@ M.base46 = {
     -- SelectMode
     -- TerminalMode
     -- TerminalNormalMode
+
+    FlashMatch = { fg = "black", bg = "blue" },
+    FlashCurrent = { fg = "black", bg = "green" },
+    FlashLabel = { fg = "white", bold = true },
   },
   hl_override = {
     Comment = { italic = true },
