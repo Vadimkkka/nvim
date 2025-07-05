@@ -1,38 +1,65 @@
-# Nvim config
+# 👹 Nvim config
 
 **This repo is supposed to used as config by NvChad users!**
 
-### Required
+> [!TIP]
+> For `Windows` use `windows` branch
 
-Font: `FiraCode Nerd Font`
+## ☝️ Required
+
+[Check NvChad install guide](https://nvchad.com/docs/quickstart/install)
+
+- `nvim` 0.11 or above
+- `nerd font` (for example `FiraCode Nerd Font`)
+- `ripgrep`
+
+## 🚀 Quick start
+
+0. Make backup
 
 ```bash
-:MasonInstall vue-language-server
+make backup
 ```
 
-Libs:
+1. Clear cache
 
-- ripgrep
-- typescript
-- @vue/typescript-plugin
+```bash
+make clear
+```
 
-Lsp:
+2. Run `neovim`
 
-- css-lsp
-- css-variables-language-server
-- lua-language-server
-- rust-analyzer
-- typescript-language-server
-- vue-language-server
+```bash
+nvim
+```
 
-Formatter:
+3. Sync plugins in `neovim`
 
-- prettier
-- rustfmt
-- stylua
+```bash
+Lazy sync
+```
 
-### Commands
+4. Open file and install lsp
 
-Plugins: `Lazy`
+```bash
+MasonInstallAll
+```
 
-Lsp: `Mason`
+> [!IMPORTANT]
+> For `vue`
+>
+> ```bash
+> MasonInstall vue-language-server
+> ```
+
+### 😎 HACKS
+
+### Hide `nvim`
+
+Hide `Ctrl-Z`
+
+Open
+
+```bash
+fg
+```
