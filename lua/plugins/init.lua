@@ -90,7 +90,7 @@ return {
   },
   {
     "folke/flash.nvim",
-    event = "VeryLazy",
+    event = "User FilePost",
     opts = {
       modes = {
         char = {
