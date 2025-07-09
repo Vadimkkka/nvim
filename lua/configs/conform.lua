@@ -1,8 +1,18 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    ["*"] = { "prettier" },
-    -- markdown = { "markdown" },
+
+    css = { "prettier" },
+    flow = { "prettier" },
+    html = { "prettier" },
+    json = { "prettier" },
+    javascript = { "prettier" },
+    markdown = { "prettier" },
+    scss = { "prettier" },
+    typescript = { "prettier" },
+    vue = { "prettier" },
+    yaml = { "prettier" },
+
     rust = { "rustfmt" },
   },
 
