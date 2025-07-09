@@ -16,7 +16,7 @@ o.wrap = false
 -- o.ignorecase = true
 -- учитывать регистр если есть заглавные
 -- o.smartcase = true
--- o.shell = "pwsh"
+o.shell = "pwsh"
 o.winborder = "rounded"
 
 -- o.spell = true
