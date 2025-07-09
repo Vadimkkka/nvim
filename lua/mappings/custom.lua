@@ -1,4 +1,6 @@
 local map = vim.keymap.set
+-- NOTE nvimtree
+map("n", "<leader>ct", "<cmd>NvimTreeClose<CR>", { desc = "Nvimtree Close" })
 -- NOTE blankline
 --
 -- map("n", "<leader>cc", function()
