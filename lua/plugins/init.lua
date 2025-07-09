@@ -82,6 +82,7 @@ return {
   {
     "mawkler/modicator.nvim",
     event = "User FilePost",
+    init = function() end,
     opts = {
       highlights = {
         defaults = { bold = true },
