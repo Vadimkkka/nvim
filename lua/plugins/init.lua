@@ -81,8 +81,11 @@ return {
   },
   {
     "mawkler/modicator.nvim",
-    event = "User FilePost",
-    init = function() end,
+    init = function()
+      -- vim.o.termguicolors = true
+      -- vim.o.cursorline = true
+      -- vim.o.number = true
+    end,
     opts = {
       highlights = {
         defaults = { bold = true },
