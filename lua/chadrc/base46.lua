@@ -2,8 +2,8 @@
 local M = {
   -- jabuti, kanagawa, onedark, palenight, yoru, tokyonight, tokyodark, oceanic-next, nightfox, material-deep-ocean
   theme = "catppuccin",
-  transparency = true,
-  integrations = { "rainbowdelimiters", "todo", "flash" },
+  -- transparency = true,
+  integrations = { "rainbowdelimiters", "todo" },
 }
 
 M.hl_add = {
@@ -17,9 +17,9 @@ M.hl_add = {
   -- TerminalMode
   -- TerminalNormalMode
 
-  -- FlashMatch = { fg = "black", bg = "blue" },
-  -- FlashCurrent = { fg = "black", bg = "green" },
-  -- FlashLabel = { fg = "white", bold = true },
+  FlashMatch = { fg = "black", bg = "blue" },
+  FlashCurrent = { fg = "black", bg = "green" },
+  FlashLabel = { fg = "white", bold = true },
 }
 
 M.hl_override = {
