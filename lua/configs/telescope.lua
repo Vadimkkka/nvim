@@ -3,9 +3,9 @@
 local default = require "nvchad.configs.telescope"
 
 local options = {
-  defaults = {
-    border = false,
-  },
+  -- defaults = {
+  --   border = false,
+  -- },
 }
 
 return vim.tbl_deep_extend("force", default, options)

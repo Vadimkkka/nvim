@@ -4,6 +4,7 @@ local M = {
   tabufline = {
     order = { "treeOffset", "buffers", "tabs" },
   },
+  telescope = { style = "bordered" },
   cmp = {
     style = "atom_colored",
     -- format_colors = {
