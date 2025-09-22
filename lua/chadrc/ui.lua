@@ -10,6 +10,7 @@ local M = {
     --   tailwind = true,
     -- },
   },
+  telescope = { style = "bordered" },
   cheatsheet = {
     theme = "simple",
   },
