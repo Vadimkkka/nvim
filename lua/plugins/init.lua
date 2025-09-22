@@ -14,7 +14,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
-      scope = { char = "" },
+      scope = { enabled = false },
       indent = { char = "" },
     },
     config = function(_, opts)
