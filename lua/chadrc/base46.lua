@@ -2,7 +2,7 @@
 local M = {
   -- jabuti, kanagawa, onedark, palenight, yoru, tokyonight, tokyodark, oceanic-next, nightfox, material-deep-ocean
   theme = "catppuccin",
-  transparency = true,
+  transparency = false,
   integrations = { "rainbowdelimiters", "todo" },
 }
 
@@ -26,7 +26,7 @@ M.hl_override = {
   Comment = { italic = true },
   ["@comment"] = { italic = true },
 
-  TbBufOnClose = { fg = "statusline_bg" },
+  TbBufOnClose = { fg = "black" },
   TbBufOffClose = { fg = "statusline_bg" },
   -- PERF aloe
   TodoBgPerf = { bg = "yellow" },
