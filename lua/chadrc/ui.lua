@@ -61,12 +61,12 @@ local M = {
 
         local git_status = vim.b[utils.stbufnr()].gitsigns_status_dict
         -- TODO icons, colors
-        local added = (git_status.added and git_status.added ~= 0) and ("%#Added#  " .. git_status.added) or ""
-        local changed = (git_status.changed and git_status.changed ~= 0) and ("%#Changed#  " .. git_status.changed)
+        local added = (git_status.added and git_status.added ~= 0) and ("%#Added#  " .. git_status.added) or ""
+        local changed = (git_status.changed and git_status.changed ~= 0) and ("%#Changed#  " .. git_status.changed)
           or ""
-        local removed = (git_status.removed and git_status.removed ~= 0) and ("%#Removed#  " .. git_status.removed)
+        local removed = (git_status.removed and git_status.removed ~= 0) and ("%#Removed#  " .. git_status.removed)
           or ""
-        -- 
+        --    󰒤 ;
         local branch_name = " " .. git_status.head
 
         return "%#St_gitIcons# " .. branch_name .. added .. changed .. removed
