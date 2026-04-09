@@ -31,12 +31,12 @@ local options = {
     map("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { desc = "Git Jump to previous hunk", expr = true })
     -- Actions
     map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Git Preview hunk" })
-    map("n", "<leader>hs", ":Gitsigns stage_hunk<CR>", { desc = "Git Stage hunk" })
-    -- map('v', '<leader>hs', ':Gitsigns stage_hunk<CR>')
-    map("n", "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "Git Reset hunk" })
-    -- map('v', '<leader>hr', ':Gitsigns reset_hunk<CR>')
+    map("n", "<leader>hi", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Git Preview hunk inline" })
+    map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", { desc = "Git Stage hunk" })
+    map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Git Reset hunk" })
     map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>", { desc = "Git Undo stage hunk" })
-    -- map('n', '<leader>gd', '<cmd>Gitsigns diffthis<CR>', { desc = "Git Diff" })
+
+    map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>", { desc = "Git Diff" })
     map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>", { desc = "Git Toggle deleted" })
   end,
 }

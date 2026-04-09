@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    event = "BufWritePre", -- for format on save
     opts = require "configs.conform",
   },
   {
@@ -48,7 +48,7 @@ return {
   -- NOTE Custom
   { "hiphish/rainbow-delimiters.nvim", event = "User FilePost" },
   -- { "romainl/vim-cool", lazy = false },
-  { "wakatime/vim-wakatime", lazy = false },
+  -- { "wakatime/vim-wakatime", lazy = false },
   {
     "folke/todo-comments.nvim",
     lazy = false,
@@ -67,6 +67,7 @@ return {
       require("todo-comments").setup(opts)
     end,
   },
+  -- { "LudoPinelli/comment-box.nvim", },
   {
     "windwp/nvim-ts-autotag",
     event = "BufReadPre",

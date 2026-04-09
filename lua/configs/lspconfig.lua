@@ -1,7 +1,7 @@
 require("nvchad.configs.lspconfig").defaults()
 -- MasonInstallAll
 -- ts_ls, eslint
-local servers = { "lua_ls", "html", "cssls", "css_variables", "rust_analyzer", "tailwindcss" }
+local servers = { "lua_ls", "html", "cssls", "css_variables", "rust_analyzer", "tailwindcss", "eslint" }
 vim.lsp.enable(servers)
 
 -- HACK override icons

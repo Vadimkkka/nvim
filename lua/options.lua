@@ -6,6 +6,8 @@ o.whichwrap = ""
 
 o.termguicolors = true
 
+-- 0.listchars = "tab: ,multispace:|   ,eol:󰌑"
+
 -- o.backup = false
 o.swapfile = false
 -- o.undofile = false
